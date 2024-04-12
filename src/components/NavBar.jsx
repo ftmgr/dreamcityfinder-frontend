@@ -1,28 +1,65 @@
-import { Container, createTheme } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { Autocomplete, Group, Burger, rem } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { IconSearch } from "@tabler/icons-react";
+import { MantineLogo } from "@mantinex/mantine-logo";
+import classes from "../styles/Navbar.module.css";
+
+const links = [
+  { link: "/about", label: "Features" },
+  { link: "/pricing", label: "Pricing" },
+  { link: "/learn", label: "Learn" },
+  { link: "/community", label: "Community" },
+];
 
 const NavBar = () => {
+  const [opened, { toggle }] = useDisclosure(false);
+  const items = links.map((link) => (
+    <a
+      key={link.label}
+      href={link.link}
+      className={classes.link}
+      onClick={(event) => event.preventDefault()}
+    >
+      {link.label}
+    </a>
+  ));
 
-    const theme = createTheme({
-        components: {
-            Container: Container.extend({
-                classNames: (_, { size }) => ({
-                    root: cx({ [classes.responsiveContainer]: size === 'responsive' }),
-                }),
-            }),
-        },
-    });
+  return (
+    <header className={classes.header}>
+      <div className={classes.inner}>
+        <Group>
+          <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
+          <MantineLogo size={28} />
+        </Group>
 
-    return (<>
-        <nav>
-            <Container size="responsive" bg="var(--mantine-color-blue-light)">
-
-                <Link to='/HomePage.jsx'> Home </Link>
-                <Link to='/About.jsx'> About </Link>
-
-            </Container>
-        </nav>
-    </>)
-}
+        <Group>
+          <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
+            {items}
+          </Group>
+          <Autocomplete
+            className={classes.search}
+            placeholder="Search"
+            leftSection={
+              <IconSearch
+                style={{ width: rem(16), height: rem(16) }}
+                stroke={1.5}
+              />
+            }
+            data={[
+              "React",
+              "Angular",
+              "Vue",
+              "Next.js",
+              "Riot.js",
+              "Svelte",
+              "Blitz.js",
+            ]}
+            visibleFrom="xs"
+          />
+        </Group>
+      </div>
+    </header>
+  );
+};
 
 export default NavBar;
