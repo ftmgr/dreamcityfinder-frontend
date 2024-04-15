@@ -1,10 +1,11 @@
 const ContentPage = () => {
-    return (<>
-        <div>
-            <p>This is content Page!</p>
-        </div>
-
-    </>);
-}
+  return (
+    <>
+      <div className="container">
+        <p>This is content Page!</p>
+      </div>
+    </>
+  );
+};
 
 export default ContentPage;
