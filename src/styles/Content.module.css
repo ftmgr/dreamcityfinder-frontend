@@ -17,30 +17,38 @@ video {
   object-fit: cover;
 }
 
+.searchInput {
+  width: 100%; /* or any specific width you prefer */
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 .cityGrid {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px;
-  position: absolute;
+  padding: 2rem;
+
   width: 100%;
   top: 70%;
 }
 
 .cityBlock {
-  width: 23%; /* Adjusts the width to fit 4 items per row with a little space between */
+  width: 23%;
   margin: 10px;
-  height: 250px; /* Fixed height for each block */
+  height: 250px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center; /* Centers the text vertically */
-  justify-content: center; /* Centers the text horizontally */
-  position: relative; /* Needed for positioning the city name absolutely within the block */
-  background-size: cover; /* Ensure the background covers the entire block */
-  background-position: center; /* Center the background image */
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
   text-align: center;
   overflow: hidden;
-  transition: transform 0.5s ease-in-out; /* Extended and smoothed transition */
+  transition: transform 0.5s ease-in-out;
   cursor: pointer;
   border-radius: 16px;
 }
