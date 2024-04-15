@@ -15,6 +15,14 @@
   align-items: center;
 }
 
+.logo {
+  font-size: 20px; /* or appropriate size */
+  color: inherit; /* Keeps the text color consistent with other text */
+  text-decoration: none; /* Removes underline */
+  padding: 10px 0; /* Optional: for better clickability */
+  display: block; /* Makes the entire area clickable */
+}
+
 .link {
   display: block;
   line-height: 1;
