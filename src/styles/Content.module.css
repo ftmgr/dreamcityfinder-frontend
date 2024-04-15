@@ -1,6 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+video {
+  width: 100%;
+  height: 70%;
+  opacity: 80%;
+  object-fit: cover;
+}
+
+.cityGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  top: 70%;
+}
+
+.cityBlock {
+  width: 23%; /* Adjusts the width to fit 4 items per row with a little space between */
+  margin: 10px;
+  height: 250px; /* Fixed height for each block */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center; /* Centers the text vertically */
+  justify-content: center; /* Centers the text horizontally */
+  position: relative; /* Needed for positioning the city name absolutely within the block */
+  background-size: cover; /* Ensure the background covers the entire block */
+  background-position: center; /* Center the background image */
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out; /* Extended and smoothed transition */
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.cityBlock:not(:hover) {
+  opacity: 0.8; /* Slightly dim blocks that are not hovered */
+}
+
+.cityBlock:hover {
+  transform: scale(1.15); /* Scale up the block by 15% on hover */
+  z-index: 10; /* Ensure the scaled element is above others */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.cityBlock img {
+  width: 100%; /* Responsive width */
+  height: 250px; /* Fixed height */
+  object-fit: cover; /* Ensures the image covers the area without distorting ratio */
+  display: block;
+}
+
+.cityName {
+  position: absolute; /* Position the text over the image */
+  width: 100%; /* Stretch the text box across the block */
+
+  color: white;
+  font-size: 32px;
+  padding: 5px 0;
 }
