@@ -1,7 +1,6 @@
-import { Autocomplete, Group, Burger, rem } from "@mantine/core";
+import { Group, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconSearch } from "@tabler/icons-react";
-import { MantineLogo } from "@mantinex/mantine-logo";
+
 import classes from "../styles/Navbar.module.css";
 
 const links = [
@@ -37,26 +36,6 @@ const NavBar = () => {
           <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
             {items}
           </Group>
-          <Autocomplete
-            className={classes.search}
-            placeholder="Search"
-            leftSection={
-              <IconSearch
-                style={{ width: rem(16), height: rem(16) }}
-                stroke={1.5}
-              />
-            }
-            data={[
-              "React",
-              "Angular",
-              "Vue",
-              "Next.js",
-              "Riot.js",
-              "Svelte",
-              "Blitz.js",
-            ]}
-            visibleFrom="xs"
-          />
         </Group>
       </div>
     </header>
