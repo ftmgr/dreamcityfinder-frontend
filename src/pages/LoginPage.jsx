@@ -1,6 +1,10 @@
+
+import { AuthenticationForm } from '../components/AuthenticationForm';
+
+
 const LoginPage = () => {
     return <>
-        <div> This is the login page!</div>
+        <AuthenticationForm />
     </>
 }
 
