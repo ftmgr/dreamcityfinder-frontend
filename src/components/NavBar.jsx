@@ -24,6 +24,7 @@ const NavBar = () => {
     </a>
   ));
 
+
   return (
     <header className={classes.header}>
       <div className={classes.inner}>
@@ -31,6 +32,7 @@ const NavBar = () => {
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
           <MantineLogo size={28} />
         </Group>
+
 
         <Group>
           <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">

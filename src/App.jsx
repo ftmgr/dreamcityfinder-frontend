@@ -1,11 +1,14 @@
-import NavBar from "./components/NavBar";
-import ContentPage from "./pages/ContentPage";
-import AdminPage from "./pages/AdminPage";
-import CityDetailPage from "./pages/CityDetailPage";
-import ErrorPage from "./pages/ErrorPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import AboutPage from "./pages/AboutPage";
+
+import NavBar from "./components/NavBar"
+import ContentPage from './pages/ContentPage'
+import AdminPage from './pages/AdminPage'
+import CityDetailPage from './pages/CityDetailPage'
+import ErrorPage from './pages/ErrorPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import AboutPage from './pages/AboutPage'
+import UserPage from './pages/UserProfilePage'
+
 import { Routes, Route } from "react-router-dom";
 
 function App() {
