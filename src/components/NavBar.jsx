@@ -24,15 +24,14 @@ const NavBar = () => {
     </a>
   ));
 
-
   return (
     <header className={classes.header}>
       <div className={classes.inner}>
         <Group>
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-          <MantineLogo size={28} />
-        </Group>
 
+          <p>Dream City Finder</p>
+        </Group>
 
         <Group>
           <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
