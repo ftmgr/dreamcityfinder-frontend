@@ -6,6 +6,7 @@ import ErrorPage from './pages/ErrorPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import AboutPage from './pages/AboutPage'
+import AboutPage from './pages/UserProfilePage'
 import { Routes, Route } from "react-router-dom";
 
 function App() {

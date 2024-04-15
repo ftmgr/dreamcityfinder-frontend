@@ -17,8 +17,8 @@ const NavBar = () => {
         <nav>
             <Container size="responsive" bg="var(--mantine-color-blue-light)">
 
-                <Link to='/HomePage.jsx'> Home </Link>
-                <Link to='/About.jsx'> About </Link>
+                <Link to='/'> Home </Link>
+                <Link to='/About'> About </Link>
 
             </Container>
         </nav>
