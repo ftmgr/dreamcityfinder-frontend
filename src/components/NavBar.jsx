@@ -1,14 +1,13 @@
 import { Group, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import userIcon from "../assets/user-icon.svg";
 
 import classes from "../styles/Navbar.module.css";
 import { Link } from "react-router-dom";
 
 const links = [
   { link: "/about", label: "About" },
-  { link: "/pricing", label: "Pricing" },
-  { link: "/learn", label: "Learn" },
-  { link: "/community", label: "Community" },
+  { link: "/admin", label: "Admin" },
 ];
 
 const NavBar = () => {
@@ -38,6 +37,9 @@ const NavBar = () => {
         <Group>
           <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
             {items}
+          </Group>
+          <Group>
+            <img src={userIcon} alt="" />
           </Group>
         </Group>
       </div>

@@ -3,6 +3,7 @@ import classes from "../styles/Content.module.css";
 import cityData from "../assets/cities.json";
 import { useState } from "react";
 import { Input } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 const ContentPage = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State to hold the search term
@@ -30,15 +31,19 @@ const ContentPage = () => {
         />
 
         <div className={classes.cityGrid}>
-          {filteredCities.map((city) => (
-            <div key={city.id} className={classes.cityBlock}>
-              <img
-                src={city.picture[0].src}
-                alt={`Image of ${city.cityname}`}
-              />
-              <div className={classes.cityName}>{city.cityname}</div>
-            </div>
-          ))}
+          {cityData &&
+            filteredCities.map((city) => (
+              <div key={city.id} className={classes.cityBlock}>
+                <Link to={`/city/${city.id}`}>
+                  <img
+                    src={city.picture[0].src}
+                    alt={`Image of ${city.cityname}`}
+                  ></img>
+                  <div className={classes.cityName}>{city.cityname}</div>
+                  <div className={classes.cityCountry}>{city.country}</div>
+                </Link>
+              </div>
+            ))}
         </div>
       </div>
     </>
