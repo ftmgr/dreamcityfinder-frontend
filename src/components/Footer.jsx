@@ -25,7 +25,7 @@ const Footer = () => {
   ));
 
   return (
-    <div className={classes.footer}>
+    <footer className={classes.footer}>
       <div className={classes.inner}>
         <Group className={classes.links}>{items}</Group>
 
@@ -33,7 +33,7 @@ const Footer = () => {
           Made with love! <p className={classes.heart}>&#10084;</p>
         </Group>
       </div>
-    </div>
+    </footer>
   );
 };
 

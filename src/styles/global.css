@@ -17,7 +17,7 @@ body {
 }
 
 .content {
-  flex: 1; /* This will make the content section expand to fill available space, pushing the footer down */
+  flex: 1;
 }
 
 .container {
@@ -25,4 +25,12 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+footer {
+  width: 100%;
+  padding: 20px 0;
+  background-color: #f3f4f6; /* example background color */
+  border-top: 1px solid #ccc;
+  text-align: center;
 }
