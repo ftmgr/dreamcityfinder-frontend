@@ -2,8 +2,8 @@ import { useState, useContext } from "react";
 
 import videoBg from "../assets/videoBg.mp4";
 import classes from "../styles/Content.module.css";
-import { Input } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Input, Button } from "@mantine/core";
+import { Link, Navigate } from "react-router-dom";
 
 import { CityContext } from "../contexts/CityContext";
 
@@ -33,6 +33,14 @@ const AdminPage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className={classes.searchInput}
         />
+
+        <Button
+          onClick={() => Navigate("/create-city")}
+          variant="outline"
+          style={{ margin: "1rem" }}
+        >
+          Create City
+        </Button>
 
         <div className={classes.cityGrid}>
           {cities &&
