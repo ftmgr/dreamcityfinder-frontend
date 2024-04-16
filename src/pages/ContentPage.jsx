@@ -1,15 +1,19 @@
 import videoBg from "../assets/videoBg.mp4";
 import classes from "../styles/Content.module.css";
-import cityData from "../assets/cities.json";
-import { useState } from "react";
+
+import { useState, useContext } from "react";
 import { Input } from "@mantine/core";
 import { Link } from "react-router-dom";
 
+import { CityContext } from "../contexts/CityContext";
+
 const ContentPage = () => {
-  const [searchTerm, setSearchTerm] = useState(""); // State to hold the search term
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const { cities } = useContext(CityContext);
 
   // Filter cities based on search term
-  const filteredCities = cityData.cities.filter((city) =>
+  const filteredCities = cities.filter((city) =>
     city.cityname.toLowerCase().includes(searchTerm.toLowerCase())
   );
   return (
@@ -31,7 +35,7 @@ const ContentPage = () => {
         />
 
         <div className={classes.cityGrid}>
-          {cityData &&
+          {cities &&
             filteredCities.map((city) => (
               <div key={city.id} className={classes.cityBlock}>
                 <Link to={`/city/${city.id}`}>
