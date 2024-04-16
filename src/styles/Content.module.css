@@ -19,8 +19,10 @@ video {
 
 .searchInput {
   width: 100%; /* or any specific width you prefer */
+
+  max-width: 400px;
   padding: 10px;
-  margin: 10px 0;
+  margin: 5rem 10rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
