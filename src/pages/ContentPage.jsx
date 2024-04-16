@@ -34,7 +34,7 @@ const ContentPage = () => {
           {cityData &&
             filteredCities.map((city) => (
               <div key={city.id} className={classes.cityBlock}>
-                <Link to={`/city/${city.id}}`}>
+                <Link to={`/city/${city.id}`}>
                   <img
                     src={city.picture[0].src}
                     alt={`Image of ${city.cityname}`}
