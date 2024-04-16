@@ -38,7 +38,7 @@ const ContentPage = () => {
                   <img
                     src={city.picture[0].src}
                     alt={`Image of ${city.cityname}`}
-                  />
+                  ></img>
                   <div className={classes.cityName}>{city.cityname}</div>
                 </Link>
               </div>
