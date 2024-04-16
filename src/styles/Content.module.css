@@ -68,6 +68,7 @@ video {
   height: 250px;
   object-fit: cover;
   display: block;
+  opacity: 90%;
 }
 
 .cityName {
@@ -80,5 +81,18 @@ video {
   text-align: center;
   padding: 10px 0;
   z-index: 10;
-  transform: translateY(-50%); /* Adjust vertically to truly center the text */
+  transform: translateY(-50%);
+}
+
+.cityCountry {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  width: 100%;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+
+  z-index: 10;
+  transform: translateY(-50%);
 }
