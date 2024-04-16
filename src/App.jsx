@@ -8,13 +8,15 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AboutPage from "./pages/AboutPage";
 import UserPage from "./pages/UserProfilePage";
+
+import { CityProvider } from "./contexts/CityContext";
 import "./styles/global.css";
 
 import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
+    <CityProvider>
       <NavBar />
 
       <div className="content">
@@ -32,7 +34,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-    </>
+    </CityProvider>
   );
 }
 

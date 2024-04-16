@@ -1,25 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { CityContext } from "../contexts/CityContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Card, Image, Text } from "@mantine/core";
-import cityData from "../assets/cities.json";
 
 const CityDetailPage = () => {
-  const [city, setCity] = useState(null); // Initialize city as null
-  const { cityId } = useParams(); // Get the cityId from the URL
+  const { cityId } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Find the city that matches the cityId from the URL
-    const foundCity = cityData.cities.find(
-      (city) => city.id.toString() === cityId
-    );
-    if (foundCity) {
-      setCity(foundCity);
-    } else {
-      // Handle case where no city is found
-      console.log("No city found with id:", cityId);
-    }
-  }, [cityId]);
+  const { cities } = useContext(CityContext);
+
+  const city = cities.find((city) => city.id.toString() === cityId);
 
   if (!city) {
     return <Text>No city data available.</Text>;
