@@ -25,7 +25,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/city-detail" element={<CityDetailPage />} />
+          <Route path="/city/:cityId" element={<CityDetailPage />} />
           {/* <Route path="/user-profile" element={<UserProfilePage />} /> */}
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<ErrorPage />} />
