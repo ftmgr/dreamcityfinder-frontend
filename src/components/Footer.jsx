@@ -1,10 +1,7 @@
-import { Anchor, Group, ActionIcon, rem } from "@mantine/core";
-import {
-  IconBrandTwitter,
-  IconBrandYoutube,
-  IconBrandInstagram,
-} from "@tabler/icons-react";
+import { Group } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import classes from "../styles/Footer.module.css";
+import { Link } from "react-router-dom";
 
 const links = [
   { link: "/about", label: "About" },
@@ -12,17 +9,19 @@ const links = [
 ];
 
 const Footer = () => {
+  const [opened, { toggle }] = useDisclosure(false);
   const items = links.map((link) => (
-    <Anchor
-      c="dimmed"
+    <Link
+      to={link.link}
       key={link.label}
       href={link.link}
+      className={classes.link}
       lh={1}
-      onClick={(event) => event.preventDefault()}
+      onClick={() => opened && toggle()}
       size="sm"
     >
       {link.label}
-    </Anchor>
+    </Link>
   ));
 
   return (
