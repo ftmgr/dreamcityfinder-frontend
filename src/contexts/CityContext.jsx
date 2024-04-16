@@ -24,16 +24,18 @@ export const CityProvider = ({ children }) => {
     }
   };
 
-  const updateCity = async (id, updatedCity) => {
+  const updateCity = async (id, updatedCityData) => {
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/cities/${id}`,
         {
-          method: "PUT",
+          method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedCity),
+          body: JSON.stringify(updatedCityData),
         }
       );
+      if (!response.ok)
+        throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
       setCities(
         cities.map((city) => (city.id === id ? { ...city, ...data } : city))
