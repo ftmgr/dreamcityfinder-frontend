@@ -28,6 +28,10 @@ const Footer = () => {
     <div className={classes.footer}>
       <div className={classes.inner}>
         <Group className={classes.links}>{items}</Group>
+
+        <Group>
+          Made with love! <p className={classes.heart}>&#10084;</p>
+        </Group>
       </div>
     </div>
   );
