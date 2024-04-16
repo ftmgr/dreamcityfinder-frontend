@@ -1,6 +1,5 @@
 import { useToggle, upperFirst } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
-import api from './registerUser';
 import { useState } from 'react';
 import axios from 'axios';
 import JSON from '../db.json';
