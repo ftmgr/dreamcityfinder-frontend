@@ -1,63 +1,46 @@
-import { Autocomplete, Group, Burger, rem } from "@mantine/core";
+import { Group, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconSearch } from "@tabler/icons-react";
-import { MantineLogo } from "@mantinex/mantine-logo";
+import userIcon from "../assets/user-icon.svg";
+
 import classes from "../styles/Navbar.module.css";
+import { Link } from "react-router-dom";
 
 const links = [
-  { link: "/about", label: "Features" },
-  { link: "/pricing", label: "Pricing" },
-  { link: "/learn", label: "Learn" },
-  { link: "/community", label: "Community" },
+  { link: "/about", label: "About" },
+  { link: "/admin", label: "Admin" },
 ];
 
 const NavBar = () => {
   const [opened, { toggle }] = useDisclosure(false);
   const items = links.map((link) => (
-    <a
+    <Link
       key={link.label}
-      href={link.link}
+      to={link.link} // Use 'to' instead of 'href'
       className={classes.link}
-      onClick={(event) => event.preventDefault()}
+      onClick={() => opened && toggle()} // Close the menu upon clicking (if open)
     >
       {link.label}
-    </a>
+    </Link>
   ));
-
 
   return (
     <header className={classes.header}>
       <div className={classes.inner}>
         <Group>
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-          <MantineLogo size={28} />
-        </Group>
 
+          <Link to="/" className={classes.logo}>
+            Dream City Finder
+          </Link>
+        </Group>
 
         <Group>
           <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
             {items}
           </Group>
-          <Autocomplete
-            className={classes.search}
-            placeholder="Search"
-            leftSection={
-              <IconSearch
-                style={{ width: rem(16), height: rem(16) }}
-                stroke={1.5}
-              />
-            }
-            data={[
-              "React",
-              "Angular",
-              "Vue",
-              "Next.js",
-              "Riot.js",
-              "Svelte",
-              "Blitz.js",
-            ]}
-            visibleFrom="xs"
-          />
+          <Group>
+            <img src={userIcon} alt="" />
+          </Group>
         </Group>
       </div>
     </header>

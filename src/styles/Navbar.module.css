@@ -1,6 +1,6 @@
 .header {
   height: rem(56px);
-  margin-bottom: rem(120px);
+
   background-color: var(--mantine-color-body);
   border-bottom: rem(1px) solid
     light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
@@ -13,6 +13,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.logo {
+  font-size: 20px; /* or appropriate size */
+  color: inherit; /* Keeps the text color consistent with other text */
+  text-decoration: none; /* Removes underline */
+  padding: 10px 0; /* Optional: for better clickability */
+  display: block; /* Makes the entire area clickable */
 }
 
 .link {
