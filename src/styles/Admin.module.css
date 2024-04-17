@@ -7,7 +7,7 @@
 .container {
   flex: 1 0 auto;
   width: 100%;
-  position: relative;
+
   padding-bottom: 20rem;
 }
 
@@ -18,14 +18,27 @@ video {
   object-fit: cover;
 }
 
-.searchInput {
-  width: 100%;
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px; /* Adjust padding as needed */
+  margin-top: -50px; /* Adjust this to position below the video or as needed */
+}
 
-  max-width: 400px;
-  padding: 10px;
+.searchInput {
+  flex-grow: 1;
+  width: 50%;
+
+  max-width: 200px;
+  padding: 60px;
   margin: 5rem 10rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.createButton {
+  margin-left: 10px; /* Ensures some space between button and input */
 }
 
 .cityGrid {
