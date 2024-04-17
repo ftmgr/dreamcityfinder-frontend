@@ -57,12 +57,27 @@ export const CityProvider = ({ children }) => {
     }
   };
 
+  const addCity = async (city) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/cities/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(city),
+      });
+      if (!response.ok) throw new Error("Failed to create new city");
+      const newCity = await response.json();
+      setCities((prevCities) => [...prevCities, newCity]); // Assuming you have a state `cities` that tracks your cities
+    } catch (error) {
+      console.error("Error creating city:", error);
+    }
+  };
+
   useEffect(() => {
     fetchDataCity();
   }, []);
 
   return (
-    <CityContext.Provider value={{ cities, updateCity, deleteCity }}>
+    <CityContext.Provider value={{ cities, updateCity, deleteCity, addCity }}>
       {children}
     </CityContext.Provider>
   );

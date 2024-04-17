@@ -31,7 +31,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/city/:cityId" element={<CityDetailPage />} />
-          {/* <Route path="/create-city" element={<CreateCityPage />} /> */}
+          <Route path="/create-city" element={<CreateCityPage />} />
           {/* <Route path="/user-profile" element={<UserProfilePage />} /> */}
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<ErrorPage />} />
