@@ -5,7 +5,6 @@
 }
 
 .container {
-  flex: 1 0 auto;
   width: 100%;
   position: relative;
   padding-bottom: 20rem;
@@ -16,6 +15,18 @@ video {
   height: 70%;
   opacity: 80%;
   object-fit: cover;
+}
+
+.cityText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2rem;
+  color: black;
 }
 
 .searchInput {
@@ -57,13 +68,13 @@ video {
 }
 
 .cityBlock:not(:hover) {
-  opacity: 0.8; /* Slightly dim blocks that are not hovered */
+  opacity: 0.8;
 }
 
 .cityBlock:hover {
-  transform: scale(1.15); /* Scale up the block by 15% on hover */
-  z-index: 10; /* Ensure the scaled element is above others */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  transform: scale(1.15);
+  z-index: 10;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .cityBlock img {
@@ -74,12 +85,29 @@ video {
   opacity: 90%;
 }
 
+.heartIcon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border: 1px solid transparent;
+  border-radius: 50%;
+
+  padding: 2px;
+}
+
+.cityBlock:hover .heartIcon {
+  opacity: 1;
+  stroke: #fe2600;
+}
+
 .cityName {
   position: absolute;
-  top: 40%; /* Center vertically relative to the block */
+  top: 40%;
   left: 0;
   width: 100%;
-  font-size: 2rem; /* Significantly larger font size */
+  font-size: 2rem;
   color: white;
   text-align: center;
   padding: 10px 0;
