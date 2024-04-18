@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { CityContext } from "../contexts/CityContext";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, TextInput } from "@mantine/core";
+import defaultCityImage from "../assets/city.jpg";
 
 const AdminCreateCityPage = () => {
   const { addCity } = useContext(CityContext);
@@ -43,7 +44,12 @@ const AdminCreateCityPage = () => {
           ],
         },
       ],
-      picture: [{ src: pictureSrc, pictureName: `${cityName} image` }],
+      picture: [
+        {
+          src: pictureSrc || defaultCityImage,
+          pictureName: pictureSrc ? `${cityName} image` : `Default City Image`,
+        },
+      ],
     };
     addCity(newCity);
     navigate("/admin");
