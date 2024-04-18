@@ -26,7 +26,8 @@ const AdminPage = () => {
           muted
           className={classes.video}
         ></video>
-        <div className={classes.controls}>
+        <div className={classes.SearchContainer}>
+          <p>Seach For City Name</p>
           <Input
             radius="md"
             placeholder="Search for cities..."

@@ -1,9 +1,10 @@
 import { createContext, useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const CityContext = createContext();
 
 export const CityProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [cities, setCities] = useState([]);
 
   const fetchDataCity = async () => {
@@ -51,7 +52,7 @@ export const CityProvider = ({ children }) => {
         method: "DELETE",
       });
       setCities(cities.filter((city) => city.id !== id));
-      Navigate("/"); // Redirect user after deletion
+      navigate("/");
     } catch (error) {
       console.error("Failed to delete city:", error);
     }
