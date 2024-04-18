@@ -1,9 +1,11 @@
-import { AuthenticationForm } from '../components/AuthenticationForm';
+import { AuthenticationForm } from "../components/AuthenticationForm";
 
 const LoginPage = () => {
-    return <>
-        <AuthenticationForm />
-    </>
-}
+  return (
+    <div>
+      <AuthenticationForm />
+    </div>
+  );
+};
 
 export default LoginPage;
