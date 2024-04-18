@@ -1,21 +1,16 @@
 .loginForm {
-    width: '400px';
-    align-items: 'center';
-    justify-content: 'center';
 }
 
 .loginDiv {
-    width: 400px;
-    height: 600px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin-top: 5rem;
-    padding-block: inherit;
+  width: 400px;
+  height: 600px;
+
+  margin-top: 5rem;
+  padding-block: inherit;
 }
 
 .content {
-    width: '400px';
-    align-items: 'center';
-    justify-content: 'center';
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }

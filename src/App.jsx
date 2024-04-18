@@ -23,7 +23,7 @@ function App() {
       <UserProvider>
         <NavBar />
 
-        <div className="content">
+        <div>
           {" "}
           {/* This div wraps the route views and expands */}
           <Routes>
