@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const links = [
   { link: "/about", label: "About" },
   { link: "/admin", label: "Admin" },
+  { link: "/login", label: "Login" },
 ];
 
 const NavBar = () => {

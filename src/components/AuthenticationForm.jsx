@@ -1,10 +1,8 @@
 import { useToggle, upperFirst } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
-import { useState } from 'react';
-import axios from 'axios';
-import JSON from '../db.json';
-
-//import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 import {
     TextInput,
@@ -20,76 +18,46 @@ import {
     Flex,
 } from '@mantine/core';
 
+/*
+   {
+            "id": 1,
+            "name": "Fatma",
+            "email": "",
+            "password": 0,
+            "terms" : true,
+            "favoriteCities": [
+                "cityId1",
+                "cityId2"
+            ],
+            "createdDate": "yyyy-mm-dd hh:mm:ss"
+        }*/
+
 
 export function AuthenticationForm(props) {
     const [type, toggle] = useToggle(['login', 'register']);
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [terms, setTerms] = useState(false);
+    const [favoriteCities, setFavoriteCities] = useState([]);
+    const [createdDate, setCreatedDate] = useState("");
 
+    const navigate = useNavigate();
+    const { addUser } = useContext(UserContext);  //addUser, UserContext? 
 
-    const form = useForm({
-        initialValues: {
-            email: '',
-            name: '',
-            password: '',
-            terms: false,
-        },
+    // Function to handle form submission
+    const handleCreateUser = () => {
+        //setFavoriteCities("Istanbul");
+        //setCreatedDate("04/18/2024");
 
-        validate: {
-            email: (val) => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
-            password: (val) => (val.length <= 6 ? 'Password should include at least 6 characters' : null),
-        },
-    });
-
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-    });
-
-    const API_BASE_URL = 'http://localhost:4000';
-
-    //http://localhost:4000/users
-
-    const api = axios.create({
-        baseURL: API_BASE_URL
-    });
-
-    const registerUser = async (userData) => {
-
-        try {
-            const response = await api.post('/register', userData);
-            return response.data;
-        } catch (error) {
-            throw error.response.data;
-        }
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const { name, email, password } = e.target;
-            const newUser = { ...formData };
-
-            setFormData({
-                ...formData,
-                name: name,
-                email: email,
-                password: password,
-            });
-
-            const response = await registerUser(formData);
-            if (response.status === 'success') {
-                //history.push('/profile');
-                console.log("Sucess to register a new user!")
-            }
-
-        } catch (error) {
-            console.error('Registration failed:', error);
-        }
+        const newUser = {
+            name: name,
+            email: email,
+            password: password,
+            terms: terms,
+        };
+        addUser(newUser);
+        navigate("/");
     };
 
     return (
@@ -99,14 +67,14 @@ export function AuthenticationForm(props) {
 
             </Text>
 
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleCreateUser(e)}>
                 <Stack>
                     {type === 'register' && (
                         <TextInput
                             label="Name"
                             placeholder="Your name"
-                            value={form.values.name}
-                            onChange={(event) => form.setFieldValue('name', event.currentTarget.value)}
+                            value={name}
+                            onChange={(event) => setName(event.currentTarget.value)}
                             radius="md"
                         />
                     )}
@@ -115,8 +83,8 @@ export function AuthenticationForm(props) {
                         required
                         label="Email"
                         placeholder="hello@mantine.dev"
-                        value={form.values.email}
-                        onChange={(event) => form.setFieldValue('email', event.currentTarget.value)}
+                        value={email}
+                        onChange={(event) => setEmail(event.currentTarget.value)}
                         error={form.errors.email && 'Invalid email'}
                         radius="md"
                     />
@@ -125,8 +93,8 @@ export function AuthenticationForm(props) {
                         required
                         label="Password"
                         placeholder="Your password"
-                        value={form.values.password}
-                        onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
+                        value={password}
+                        onChange={(event) => setPassword(event.currentTarget.value)}
                         error={form.errors.password && 'Password should include at least 6 characters'}
                         radius="md"
                     />
@@ -134,8 +102,8 @@ export function AuthenticationForm(props) {
                     {type === 'register' && (
                         <Checkbox
                             label="I accept terms and conditions"
-                            checked={form.values.terms}
-                            onChange={(event) => form.setFieldValue('terms', event.currentTarget.checked)}
+                            checked={terms}
+                            onChange={(event) => setTerms(event.currentTarget.checked)}
                         />
                     )}
                 </Stack>
