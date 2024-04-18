@@ -12,6 +12,7 @@ import AboutPage from "./pages/AboutPage";
 import UserPage from "./pages/UserProfilePage";
 
 import { CityProvider } from "./contexts/CityContext";
+import { UserProvider } from "./contexts/UserContext";
 import "./styles/global.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -19,25 +20,30 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <CityProvider>
-      <NavBar />
+      <UserProvider>
+        <NavBar />
 
-      <div className="content">
-        {" "}
-        {/* This div wraps the route views and expands */}
-        <Routes>
-          <Route path="/" element={<ContentPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/admin/city/:cityId" element={<AdminCityDetailPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/city/:cityId" element={<CityDetailPage />} />
-          <Route path="/create-city" element={<CreateCityPage />} />
-          {/* <Route path="/user-profile" element={<UserProfilePage />} /> */}
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </div>
-      <Footer />
+        <div className="content">
+          {" "}
+          {/* This div wraps the route views and expands */}
+          <Routes>
+            <Route path="/" element={<ContentPage />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route
+              path="/admin/city/:cityId"
+              element={<AdminCityDetailPage />}
+            />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/city/:cityId" element={<CityDetailPage />} />
+            <Route path="/create-city" element={<CreateCityPage />} />
+            {/* <Route path="/user-profile" element={<UserProfilePage />} /> */}
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </div>
+        <Footer />
+      </UserProvider>
     </CityProvider>
   );
 }
