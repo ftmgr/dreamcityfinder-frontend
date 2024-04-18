@@ -1,0 +1,22 @@
+.loginForm {
+    width: '400px';
+    align-items: 'center';
+    justify-content: 'center';
+}
+
+.loginDiv {
+    width: 400px;
+    height: 600px;
+    align-items: center;
+    display: inline-block;
+    justify-content: center;
+    margin-top: 5rem;
+    margin-left: 32rem;
+    padding-block: inherit;
+}
+
+.content {
+    width: '400px';
+    align-items: 'center';
+    justify-content: 'center';
+}
