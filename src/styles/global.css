@@ -11,9 +11,12 @@ body,
 }
 
 body {
-  font-family: Arial, sans-serif; /* Example font */
-  background-color: #f4f4f4; /* Light grey background */
-  color: #333; /* Dark grey text */
+  font-family: Arial, sans-serif;
+  /* Example font */
+  background-color: #f4f4f4;
+  /* Light grey background */
+  color: #333;
+  /* Dark grey text */
 }
 
 .container {
@@ -26,7 +29,23 @@ body {
 footer {
   width: 100%;
   padding: 20px 0;
-  background-color: #f3f4f6; /* example background color */
+  background-color: #f3f4f6;
+  /* example background color */
   border-top: 1px solid #ccc;
   text-align: center;
+}
+
+.aboutUs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 50%;
+  top: 70%;
+  flex-direction: column;
+  align-content: center;
 }
