@@ -16,10 +16,6 @@ body {
   color: #333; /* Dark grey text */
 }
 
-.content {
-  flex: 1;
-}
-
 .container {
   display: flex;
   justify-content: center;
