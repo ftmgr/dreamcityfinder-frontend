@@ -11,11 +11,9 @@ import {
   Paper,
   Group,
   Button,
-  Divider,
   Checkbox,
   Anchor,
   Stack,
-  Flex,
 } from "@mantine/core";
 
 /*
@@ -40,32 +38,24 @@ export function AuthenticationForm(props) {
   const [terms, setTerms] = useState(false);
 
   const navigate = useNavigate();
-  const { addUser, getUserLogin } = useContext(UserContext); //addUser, UserContext?
+  const { addUser, fetchDataUser } = useContext(UserContext);
 
-  // Function to handle form submission
-  const handleUser = () => {
-    //setFavoriteCities("Istanbul");
-    //setCreatedDate("04/18/2024");
-    if (type == "login") {
-      const { user } = login(email, password);
-      if (user) {
-        console.log("User Login success!!");
+  const handleUser = async () => {
+    if (type === "login") {
+      try {
+        fetchDataUser(email);
+      } catch (error) {
+        console.error("Error during login:", error);
       }
-      return;
-    }
-    const newUser = {
-      name: name,
-      email: email,
-      password: password,
-      terms: terms,
-    };
-    addUser(newUser);
-    navigate("/");
-  };
-
-  const login = (email, password) => {
-    if (!password || !email) {
-      getUserLogin(email, password);
+    } else {
+      const newUser = {
+        name: name,
+        email: email,
+        password: password,
+        terms: terms,
+      };
+      addUser(newUser);
+      navigate("/");
     }
   };
 
@@ -77,7 +67,12 @@ export function AuthenticationForm(props) {
           {type === "login" ? <span>Login</span> : <span>Register</span>}
         </Text>
 
-        <form onSubmit={(e) => handleUser(e)}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleUser();
+          }}
+        >
           <Stack>
             {type === "register" && (
               <TextInput

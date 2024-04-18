@@ -1,25 +1,35 @@
 import { createContext, useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  const [userLogin, setLogin] = useState({});
+  const [userLogin, setUserLogin] = useState({});
+  const [userLoginEmail, setUserLoginEmail] = useState();
 
-  const fetchDataUser = async () => {
+  const fetchDataUser = async (email) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
         headers: {
           "Cache-Control": "no-cache",
         },
       });
-      if (!response.ok) {
+      if (!response) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
       setUsers(data);
+      console.log(data);
+      const userData = data.filter((user) => {
+        return user.email === email;
+      });
+      console.log(email);
+      console.log(userLogin);
+      setUserLogin(userData);
+      setUserLoginEmail(userLogin.email);
     } catch (error) {
       console.error("Failed to fetch users:", error);
     }
@@ -37,10 +47,6 @@ export const UserProvider = ({ children }) => {
       );
       if (!response.ok)
         throw new Error(`HTTP error! status: ${response.status}`);
-      const data = await response.json();
-      setCities(
-        users.map((user) => (user.id === id ? { ...user, ...data } : user))
-      );
     } catch (error) {
       console.error("Failed to update user:", error);
     }
@@ -67,43 +73,31 @@ export const UserProvider = ({ children }) => {
       });
       if (!response.ok) throw new Error("Failed to create new user");
       const newUser = await response.json();
-      setUsers((prevUsers) => [...prevUsers, newUser]); // Assuming you have a state `cities` that tracks your cities
+      setUsers((prevUsers) => [...prevUsers, newUser]);
     } catch (error) {
       console.error("Error creating user:", error);
     }
   };
 
-  const getUserLogin = async (email, password) => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to login");
-      }
-      const userLogin = await response.json();
-      setLogin(userLogin);
-    } catch (error) {
-      console.log("Error on Login: ", error);
-    }
-  };
-
   useEffect(() => {
-    fetchDataUser();
-  }, []);
+    if (userLogin && userLogin.email === userLoginEmail) {
+      console.log("Login successful");
+      navigate("/");
+    } else {
+      console.error("Login failed:");
+    }
+  }, [userLogin]);
 
   return (
     <UserContext.Provider
       value={{
         userLogin,
+        setUserLogin,
         users,
         updateUser,
         deleteUser,
         addUser,
-        getUserLogin,
+        fetchDataUser,
       }}
     >
       {children}
