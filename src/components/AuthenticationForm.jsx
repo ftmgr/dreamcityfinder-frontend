@@ -1,22 +1,21 @@
 import { useToggle, upperFirst } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import classes from "../styles/AuthenticationTitle.module.css";
 
 import {
-    TextInput,
-    PasswordInput,
-    Text,
-    Paper,
-    Group,
-    Button,
-    Divider,
-    Checkbox,
-    Anchor,
-    Stack,
-    Flex,
+  TextInput,
+  PasswordInput,
+  Text,
+  Paper,
+  Group,
+  Button,
+  Divider,
+  Checkbox,
+  Anchor,
+  Stack,
+  Flex,
 } from "@mantine/core";
 
 /*
@@ -34,104 +33,117 @@ import {
         }*/
 
 export function AuthenticationForm(props) {
-    const [type, toggle] = useToggle(["login", "register"]);
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [terms, setTerms] = useState(false);
-    const [favoriteCities, setFavoriteCities] = useState([]);
-    const [createdDate, setCreatedDate] = useState("");
+  const [type, toggle] = useToggle(["login", "register"]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [terms, setTerms] = useState(false);
 
-    const navigate = useNavigate();
-    const { addUser } = useContext(UserContext); //addUser, UserContext?
+  const navigate = useNavigate();
+  const { addUser, getUserLogin } = useContext(UserContext); //addUser, UserContext?
 
-    // Function to handle form submission
-    const handleCreateUser = () => {
-        //setFavoriteCities("Istanbul");
-        //setCreatedDate("04/18/2024");
-
-        const newUser = {
-            name: name,
-            email: email,
-            password: password,
-            terms: terms,
-        };
-        addUser(newUser);
-        navigate("/");
+  // Function to handle form submission
+  const handleUser = () => {
+    //setFavoriteCities("Istanbul");
+    //setCreatedDate("04/18/2024");
+    if (type == "login") {
+      const { user } = login(email, password);
+      if (user) {
+        console.log("User Login success!!");
+      }
+      return;
+    }
+    const newUser = {
+      name: name,
+      email: email,
+      password: password,
+      terms: terms,
     };
+    addUser(newUser);
+    navigate("/");
+  };
 
-    return (
-        <div className={classes.loginDiv}>
-            <Paper
+  const login = (email, password) => {
+    if (!password || !email) {
+      getUserLogin(email, password);
+    }
+  };
+
+  return (
+    <div className={classes.loginDiv}>
+      <Paper radius="md" p="xl" withBorder {...props}>
+        <Text size="lg" fw={500}>
+          Welcome!{" "}
+          {type === "login" ? <span>Login</span> : <span>Register</span>}
+        </Text>
+
+        <form onSubmit={(e) => handleUser(e)}>
+          <Stack>
+            {type === "register" && (
+              <TextInput
+                label="Name"
+                placeholder="Your name"
+                value={name}
+                onChange={(event) => setName(event.currentTarget.value)}
                 radius="md"
-                p="xl"
+              />
+            )}
 
-                withBorder
-                {...props}
+            <TextInput
+              required
+              label="Email"
+              placeholder="hello@mantine.dev"
+              value={email}
+              onChange={(event) => setEmail(event.currentTarget.value)}
+              error={
+                !email.toLowerCase().match(/^\S+@\S+\.\S+$/) &&
+                email.length > 0 &&
+                "Invalid email"
+              }
+              radius="md"
+            />
+
+            <PasswordInput
+              required
+              label="Password"
+              placeholder="Your password"
+              value={password}
+              onChange={(event) => setPassword(event.currentTarget.value)}
+              error={
+                password.length < 6 &&
+                password.length > 0 &&
+                "Password should include at least 6 characters"
+              }
+              radius="md"
+            />
+
+            {type === "register" && (
+              <Checkbox
+                label="I accept terms and conditions"
+                checked={terms}
+                onChange={(event) => setTerms(event.currentTarget.checked)}
+              />
+            )}
+          </Stack>
+
+          <Group justify="space-between" mt="xl">
+            <Anchor
+              component="button"
+              type="button"
+              c="dimmed"
+              onClick={() => toggle()}
+              size="xs"
             >
-                <Text size="lg" fw={500}>
-                    Welcome! {type === "login" ? <span>Login</span> : <span>Register</span>}
-                </Text>
-
-                <form onSubmit={(e) => handleCreateUser(e)} >
-                    <Stack>
-                        {type === "register" && (
-                            <TextInput
-                                label="Name"
-                                placeholder="Your name"
-                                value={name}
-                                onChange={(event) => setName(event.currentTarget.value)}
-                                radius="md"
-                            />
-                        )}
-
-                        <TextInput
-                            required
-                            label="Email"
-                            placeholder="hello@mantine.dev"
-                            value={email}
-                            onChange={(event) => setEmail(event.currentTarget.value)}
-                            error={!email.toLowerCase().match(/^\S+@\S+\.\S+$/) && email.length > 0 && "Invalid email"}
-                            radius="md"
-                        />
-
-                        <PasswordInput
-                            required
-                            label="Password"
-                            placeholder="Your password"
-                            value={password}
-                            onChange={(event) => setPassword(event.currentTarget.value)}
-                            error={password.length < 6 && password.length > 0 && "Password should include at least 6 characters"}
-                            radius="md"
-                        />
-
-                        {type === "register" && (
-                            <Checkbox
-                                label="I accept terms and conditions"
-                                checked={terms}
-                                onChange={(event) => setTerms(event.currentTarget.checked)}
-                            />
-                        )}
-                    </Stack>
-
-                    <Group justify="space-between" mt="xl">
-                        <Anchor
-                            component="button"
-                            type="button"
-                            c="dimmed"
-                            onClick={() => toggle()}
-                            size="xs"
-                        >
-                            {type === "register"
-                                ? "Already have an account? Login"
-                                : "Don't have an account? Register"}
-                        </Anchor>
-                        <Button type="submit" radius="xl">
-                            {upperFirst(type)}
-                        </Button>
-                    </Group>
-                </form>
-            </Paper>
-        </div>
-    );
+              {type === "register"
+                ? "Already have an account? Login"
+                : "Don't have an account? Register"}
+            </Anchor>
+            <Button type="submit" radius="xl">
+              {upperFirst(type)}
+            </Button>
+          </Group>
+        </form>
+      </Paper>
+    </div>
+  );
 }
