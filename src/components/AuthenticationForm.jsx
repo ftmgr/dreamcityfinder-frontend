@@ -85,7 +85,7 @@ export function AuthenticationForm(props) {
                         placeholder="hello@mantine.dev"
                         value={email}
                         onChange={(event) => setEmail(event.currentTarget.value)}
-                        error={form.errors.email && 'Invalid email'}
+                        error={email && 'Invalid email'}
                         radius="md"
                     />
 
@@ -95,7 +95,7 @@ export function AuthenticationForm(props) {
                         placeholder="Your password"
                         value={password}
                         onChange={(event) => setPassword(event.currentTarget.value)}
-                        error={form.errors.password && 'Password should include at least 6 characters'}
+                        error={password && 'Password should include at least 6 characters'}
                         radius="md"
                     />
 
