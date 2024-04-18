@@ -9,7 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AboutPage from "./pages/AboutPage";
-import UserPage from "./pages/UserProfilePage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 import { CityProvider } from "./contexts/CityContext";
 import { UserProvider } from "./contexts/UserContext";
@@ -37,7 +37,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/city/:cityId" element={<CityDetailPage />} />
             <Route path="/create-city" element={<CreateCityPage />} />
-            {/* <Route path="/user-profile" element={<UserProfilePage />} /> */}
+            <Route path="/user-profile/:id" element={<UserProfilePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>

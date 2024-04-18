@@ -26,10 +26,10 @@ export const UserProvider = ({ children }) => {
       const userData = data.filter((user) => {
         return user.email === email;
       });
-      console.log(email);
-      console.log(userLogin);
+
       setUserLogin(userData);
       setUserLoginEmail(userLogin.email);
+      navigate("/");
     } catch (error) {
       console.error("Failed to fetch users:", error);
     }
@@ -82,7 +82,6 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (userLogin && userLogin.email === userLoginEmail) {
       console.log("Login successful");
-      navigate("/");
     } else {
       console.error("Login failed:");
     }
