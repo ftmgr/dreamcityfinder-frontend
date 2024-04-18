@@ -29,12 +29,19 @@ video {
   color: black;
 }
 
+.SearchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 8rem 3rem;
+}
+
 .searchInput {
   width: 100%;
-
   max-width: 400px;
   padding: 10px;
-  margin: 5rem 10rem;
+
   border: 1px solid #ccc;
   border-radius: 5px;
 }

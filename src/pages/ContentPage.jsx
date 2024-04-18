@@ -43,14 +43,16 @@ const ContentPage = () => {
         <div className={classes.cityText}>
           <h1>Welcome to Dream City Finder</h1>
         </div>
-        <p>Seach For City Name</p>
-        <Input
-          radius="md"
-          placeholder="Search for cities..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className={classes.searchInput}
-        />
+        <div className={classes.SearchContainer}>
+          <p>Seach For City Name</p>
+          <Input
+            radius="md"
+            placeholder="Search for cities..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className={classes.searchInput}
+          />
+        </div>
 
         <div className={classes.cityGrid}>
           {cities &&
