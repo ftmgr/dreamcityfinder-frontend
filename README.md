@@ -5,7 +5,7 @@ Dream City Finder is a web application designed to help users explore various ci
 ## Features
 
 - **City Information**: Get detailed information on the cost of living, weather conditions, and more for a variety of cities.
-- **Interactive Map**: Explore cities on an interactive map to visualize their locations and gather data seamlessly.
+
 - **User Accounts**: Users can create accounts to save favorite cities and manage their search history.
 - **Mobile Responsive**: Fully responsive design that works on web and mobile devices.
 
