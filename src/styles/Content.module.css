@@ -46,6 +46,22 @@ video {
   border-radius: 5px;
 }
 
+.createButton {
+  margin-top: 20px; /* Adds space above the button */
+  padding: 10px 20px; /* Increases padding inside the button */
+  font-size: 16px; /* Adjusts the font size inside the button */
+  background-color: #007bff; /* Sets a background color */
+  color: white; /* Sets the text color */
+  border-radius: 5px; /* Rounds the corners of the button */
+  border: none; /* Removes the border */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.createButton:hover {
+  background-color: #0056b3; /* Darkens the background color on hover */
+}
+
 .cityGrid {
   display: flex;
   flex-wrap: wrap;
